@@ -9,13 +9,18 @@
 <div id="app">
     <div class="product">
         <div class="product-image">
-            <img :src='image' :alt='altText'>
+            <img :src='image'>
         </div>
         <div class="product-info">
             <h1>{{product}}</h1>
-            <p v-show='inStock'>In Stock</p>
-            <p v-else-if="inventory <=10 &&  inventory >0">Alomost sold out!</p>
+            <p v-if="inStock">In Stock</p>
             <p v-else>Out of Stock</p>
+            <ul>
+                <li v-for="detail in details" :key="detail">{{detail}}</li>
+            </ul>
+            <ul>
+                <li v-for="variant in variants" :key="variant.variantId">{{variant.variantColor}}</li>
+            </ul>
         </div>
     </div>
 </div>

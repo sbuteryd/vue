@@ -19,9 +19,18 @@
                 <li v-for="detail in details" :key="detail">{{detail}}</li>
             </ul>
             <ul>
-                <li v-for="variant in variants" :key="variant.variantId">{{variant.variantColor}}</li>
+                <li v-for="variant in variants" :key="variant.variantId">
+                    <p @mouseover="updateProduct(variant.variantImage)">
+                        {{variant.variantColor}}
+                    </p>
+                </li>
             </ul>
+            <div class="cart">
+                <p>Cart（ {{cart}} ）</p>
+            </div>
+            <button v-on:click="addToCart">Add to cart</button>
         </div>
+
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

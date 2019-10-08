@@ -18,6 +18,9 @@ var app = new Vue ({
             }
         ],
         cart:0,
+        textDecoration:{
+            textDecoration:'line-through'
+        }
     },
     methods:{
         addToCart(){

@@ -87,3 +87,7 @@
     color: #16C0B0;
     text-decoration: underline;
   }
+
+  .disabledOutStock {
+    text-decoration: line-through;
+  }

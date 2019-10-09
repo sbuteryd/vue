@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="./css/product_style.css">
 </head>
 <body>
+<div class="nav-bar"></div>
+
 <div id="app">
 
     <div class="product">
@@ -24,12 +26,18 @@
             </ul>
 
             <div v-for="variant in variants" :key="variant.variantId">
-                <p>{{ variant.variantColor }}</p>
+                <p @mouseover="updateProduct(variant.variantImage)">{{ variant.variantColor }}</p>
             </div>
+
+            <button v-on:click="addToCart">Add to cart</button>
+
+            <div class="cart">
+                <p>Cart({{ cart }})</p>
+            </div>
+
         </div>
 
     </div>
-</div>
 
 </div>
 <script src="./vue.js"></script>

@@ -1,10 +1,12 @@
 //Create a new button and method to decrement the value of `cart`.
+//./assets/vmSocks-blue-onWhite.jpg'
+//./assets/vmSocks-green-onWhite.jpg
 
 var app = new Vue({
     el: '#app',
     data: {
         product: 'Socks',
-        image: './assets/vmSocks-green-onWhite.jpg',
+        image: './assets/vmSocks-blue-onWhite.jpg',
         inStock: true,
         details: ['80% cotton', '20% polyester', 'Gender-neutral'],
         variants: [
@@ -30,4 +32,5 @@ var app = new Vue({
         }
     }
 })
+
 

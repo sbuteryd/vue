@@ -7,7 +7,7 @@ Vue.component('product', {
         <div class="product-info">
             <h1>{{product}}</h1>
             <p  v-if="inStock">In Stock</p>
-            <p v-else :style="{textD'}">Out of Stock</p>
+            <p v-else :style="{textDecoration:'line-through'}">Out of Stock</p>
             <ul>
                 <li v-for="detail in details" :key="detail">{{detail}}</li>
             </ul>

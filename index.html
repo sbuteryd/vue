@@ -7,8 +7,13 @@
 </head>
 <body>
 
+<div class="nav-bar"></div>
+
 <div id="app">
-    <product :premium="premium"></product>
+    <div class="cart">
+        <p>Cart({{ cart.length }})</p>
+    </div>
+    <product :premium="premium" @add-to-cart="updateCart"></product>
 </div>
 <script src="./vue.js"></script>
 <script src="main.js"></script>

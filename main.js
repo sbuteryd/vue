@@ -3,6 +3,9 @@
 //./assets/vmSocks-green-onWhite.jpg
 
 
+
+//Add a button that removes the product from the cart array by emitting an event with the id of the product to be removed.
+
 Vue.component('product', {
     props: {
         premium: {
@@ -11,45 +14,41 @@ Vue.component('product', {
         }
     },
     template: `
-   <div class="product">
-        
-      <div class="product-image">
-        <img :src="image" />
+     <div class="product">
+          
+        <div class="product-image">
+          <img :src="image" />
+        </div>
+  
+        <div class="product-info">
+            <h1>{{ product }}</h1>
+            <p v-if="inStock">In Stock</p>
+            <p v-else>Out of Stock</p>
+            <p>Shipping: {{ shipping }}</p>
+  
+            <ul>
+              <li v-for="detail in details">{{ detail }}</li>
+            </ul>
+  
+            <div class="color-box"
+                 v-for="(variant, index) in variants" 
+                 :key="variant.variantId"
+                 :style="{ backgroundColor: variant.variantColor }"
+                 @mouseover="updateProduct(index)"
+                 >
+            </div> 
+  
+            <button v-on:click="addToCart" 
+              :disabled="!inStock"
+              :class="{ disabledButton: !inStock }"
+              >
+            Add to cart
+            </button>
+  
+         </div>  
+      
       </div>
-
-      <div class="product-info">
-          <h1>{{ product }}</h1>
-          <p v-if="inStock">In Stock</p>
-          <p v-else>Out of Stock</p>
-          <p>Shipping: {{ shipping }}</p>
-
-          <ul>
-            <li v-for="detail in details">{{ detail }}</li>
-          </ul>
-
-          <div class="color-box"
-               v-for="(variant, index) in variants" 
-               :key="variant.variantId"
-               :style="{ backgroundColor: variant.variantColor }"
-               @mouseover="updateProduct(index)"
-               >
-          </div> 
-
-          <button v-on:click="addToCart" 
-            :disabled="!inStock"
-            :class="{ disabledButton: !inStock }"
-            >
-          Add to cart
-          </button>
-
-          <div class="cart">
-            <p>Cart({{ cart }})</p>
-          </div>
-
-       </div>  
-    
-    </div>
-   `,
+     `,
     data() {
         return {
             product: 'Socks',
@@ -60,7 +59,7 @@ Vue.component('product', {
                 {
                     variantId: 2234,
                     variantColor: 'green',
-                    variantImage:  './assets/vmSocks-green-onWhite.jpg',
+                    variantImage: './assets/vmSocks-green-onWhite.jpg',
                     variantQuantity: 10
                 },
                 {
@@ -69,13 +68,12 @@ Vue.component('product', {
                     variantImage: './assets/vmSocks-blue-onWhite.jpg',
                     variantQuantity: 0
                 }
-            ],
-            cart: 0
+            ]
         }
     },
     methods: {
         addToCart: function() {
-            this.cart += 1
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
         },
         updateProduct: function(index) {
             this.selectedVariant = index
@@ -103,7 +101,12 @@ Vue.component('product', {
 var app = new Vue({
     el: '#app',
     data: {
-        premium: true
+        premium: true,
+        cart: []
+    },
+    methods: {
+        updateCart(id) {
+            this.cart.push(id)
+        }
     }
 })
-

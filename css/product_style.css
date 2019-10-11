@@ -3,6 +3,10 @@
     color:#282828;
     margin: 0px;
   }
+
+ .disableBuitton {
+   background-color: gainsboro;
+ }
   
   .nav-bar {
     background: linear-gradient(-90deg, #84CF6A, #16C0B0);

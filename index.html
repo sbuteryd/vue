@@ -12,22 +12,26 @@
             <img :src="image" :alt="description">
         </div>
         <div class='product-info'>
-            <p>{{product}}</p>
+            <p>{{title}}</p>
             <p v-if="inStock">In Stock</p>
             <p v-else="inStock">Out of Stock</p>
             <ul>
                 <li v-for=" detail  in details">{{detail}}</li>
             </ul>
 
-            <div  @mouseover="updateProduct(variant.image)"
+            <div
+                  v-for="(variant,index) in variants"
+                  :key="variant.variantId"
                   class="color-box"
-                  v-for="variant in variants" :key="variant.variantId"
                   :style="{'background-color':variant.variantColor}"
+                  @mouseover="updateProduct(index)"
             >
+
             </div>
             <button
                     @click="addCarts"
                     :disabled= '!inStock'
+                    :class ='{disableButton:!inStock}'
             >
                 Add to Caf
             </button>

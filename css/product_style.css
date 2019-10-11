@@ -87,3 +87,6 @@
     color: #16C0B0;
     text-decoration: underline;
   }
+  .disableButton {
+    background-color: rgba(128, 128, 128, 0.74);
+  }

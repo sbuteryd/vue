@@ -7,7 +7,27 @@
 </head>
 <body>
 <div id="app">
-    <p>{{product}}</p>
+    <div class='product'>
+        <div class='product-image'>
+            <img :src="image" :alt="description">
+        </div>
+        <div class='product-info'>
+            <p>{{product}}</p>
+            <p v-if="inStock">In Stock</p>
+            <p v-else="inStock">Out of Stock</p>
+            <ul>
+                <li v-for=" detail  in details">{{detail}}</li>
+            </ul>
+
+            <div v-for="variant in variants" :key="variant.variantId">
+                <p @mouseover="updateProduct(variant.image)">{{variant.variantColor}}</p>
+            </div>
+            <button @click="addCarts">Add to Caf</button>
+            <div class="cart">
+                <p>Cart {{cart}} </p>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="vue.js"></script>
 <script src="main.js"></script>

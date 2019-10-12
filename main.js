@@ -22,23 +22,12 @@ var app  = new Vue({
         ],
         carts:0,
     },
-    methods:{
-        updateImage(index){
-            this.selectedVariant = index
-        },
-        updateCarts(){
-            this.carts +=1
-        }
-    },
     computed:{
         image(){
             return this.variants[this.selectedVariant].variantimage
         },
         title(){
-            return `${this.brand} ${this.product}`
-        },
-        inStock(){
-            return this.variants[this.selectedVariant].variantQuantity
+            return  `${this.brand} ${this.product}`
         }
     }
 

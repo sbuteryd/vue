@@ -37,7 +37,7 @@ Vue.component('product', {
             Add to cart
             </button>
          </div>  
-      
+      <product-review></product-review>   
       </div>
      `,
     data() {
@@ -86,6 +86,70 @@ Vue.component('product', {
                 return "Free"
             }
             return 2.99
+        }
+    }
+})
+
+
+Vue.component('product-review',{
+    // value={this.state.review}
+    template: ` 
+<!--         event.preventDefault()-->
+        <form class="review-form" @submit.prevent="onSubmit">
+        <p>
+            <label for="name">Name:</label>
+            <!--            value={this.state.name}-->
+            <input v-model="name">
+        </p>
+        <p>
+            <label for="rating">Rating</label>
+            <!--       value ={this.state.review}}-->
+            <textarea id="review" v-model="review"></textarea>
+        </p>
+        <p>
+            <label for="rating">Rating:</label>
+            <select name="" id="rating" v-model.number="rating">
+                <option>5</option>
+                <option>4</option>
+                <option>3</option>
+                <option>2</option>
+                <option>1</option>
+            </select>
+        </p>
+    </form>  
+`,
+    data(){
+        // state = {
+        //     value: ' ',
+        //     name:'',
+        //     review:'',
+        //     listReview:[],
+        //     submitValue:false
+        // };
+        //都是直接调用一个函数，注意这里不是对象。
+        return {
+            name:null,
+            review:null,
+            rating:null
+        }
+    },
+    methods:{
+        // this.setState(({
+        //     value:'',
+        //     name:'',
+        //     review:'',
+        //     submitValue:false
+        // }))
+
+        onSubmit(){
+            let productReview = {
+                name:this.name,
+                review:this.review,
+                rating:this.rating
+            }
+            this.name=null
+            this.review=null
+            this.rating =null
         }
     }
 })

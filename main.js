@@ -1,99 +1,104 @@
-Vue.component('product',{
-    props:{
-        second:{
-            type:Boolean,
-            required:true
+//Add a button that removes the product from the cart array by emitting an event with the id of the product to be removed.
+
+Vue.component('product', {
+    props: {
+        premium: {
+            type: Boolean,
+            required: true
         },
     },
-    template:`
-       <div class="product">
+    template: `
+     <div class="product">
         <div class="product-image">
-            <img :src="image" alt="">
+          <img :src="image" />
         </div>
         <div class="product-info">
-            <h1>{{title}}</h1>
+            <h1>{{ product }}</h1>
             <p v-if="inStock">In Stock</p>
             <p v-else>Out of Stock</p>
+            <p>Shipping: {{ shipping }}</p>
             <ul>
-                <li v-for="detail in details">
-                    {{detail}}
-                </li>
+              <li v-for="detail in details">{{ detail }}</li>
             </ul>
-            <p>Shipiing :{{shipping}}</p>
-            <div v-for="(variant,index) in variants">
-                <p @mouseover="updateImage(index)" class="color-box" :style="{backgroundColor: variant.variantColor}"></p>
-            </div>
-            <div class="cart">
-                Cart ({{carts}})
-            </div>
+  
+            <div class="color-box"
+                 v-for="(variant, index) in variants" 
+                 :key="variant.variantId"
+                 :style="{ backgroundColor: variant.variantColor }"
+                 @mouseover="updateProduct(index)"
+                 >
+            </div> 
+  
             <button
-                    @click="updateCart"
-                    :disabled ="!inStock"
-                    :class="{disableBuitton:!inStock}"
-            >
-                Add to cart
+              :disabled="!inStock"
+              :class="{ disabledButton: !inStock }"
+              @click="updateCart"
+              >
+            Add to cart
             </button>
-
-        </div>
-    </div>
-    `,
+         </div>  
+      
+      </div>
+     `,
     data() {
         return {
-            brand:"Vue Mastery",
-            product:"Socks",
-            description:'this is socks',
-            selectedVariant:0,
+            product: 'Socks',
+            brand: 'Vue Mastery',
+            selectedVariant: 0,
             details: ['80% cotton', '20% polyester', 'Gender-neutral'],
             variants: [
                 {
                     variantId: 2234,
                     variantColor: 'green',
-                    variantimage:'./img/vmSocks-green-onWhite.jpg',
-                    variantQuantity:10
+                    variantImage: './img/vmSocks-green-onWhite.jpg',
+                    variantQuantity: 10
                 },
                 {
                     variantId: 2235,
                     variantColor: 'blue',
-                    variantimage:'./img/vmSocks-blue-onWhite.jpg',
-                    variantQuantity:0
+                    variantImage: './img/vmSocks-blue-onWhite.jpg',
+                    variantQuantity: 0
                 }
-            ],
-            carts:0,
+            ]
         }
     },
-    methods:{
-        updateImage(index){
+    methods: {
+        updateProduct: function (index) {
             this.selectedVariant = index
         },
         updateCart(){
-            this.carts +=1
-            console.log()
+            console.log('++ update Cart')
+            this.$emit('update-cart')
         }
     },
-    computed:{
-        image(){
-            return this.variants[this.selectedVariant].variantimage
+    computed: {
+        title() {
+            return this.brand + ' ' + this.product
         },
-        title(){
-            return `${this.brand} ${this.product}`
+        image(){
+            return this.variants[this.selectedVariant].variantImage
         },
         inStock(){
             return this.variants[this.selectedVariant].variantQuantity
         },
-        shipping(){
-            if(this.second){
+        shipping() {
+            if (this.premium) {
                 return "Free"
             }
-            return  '2.99'
+            return 2.99
         }
-    },
-
-
+    }
 })
 
-var app  = new Vue({
-    el:'#app',
-    data:{
-        premium:false,
+var app = new Vue({
+    el: '#app',
+    data: {
+        premium: true,
+        cart: 0,
+    },
+    methods: {
+        updateCart(){
+            this.cart +=1
+        }
     }
 })

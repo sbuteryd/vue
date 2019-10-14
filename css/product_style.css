@@ -91,10 +91,16 @@
     color: #16C0B0;
     text-decoration: underline;
   }
+<<<<<<< HEAD
   .disableButton {
     background-color: rgba(128, 128, 128, 0.74);
   }
 
   .second {
       padding: 100px;
+=======
+
+  .disabledOutStock {
+    text-decoration: line-through;
+>>>>>>> 6eb6b325842b24ebe29cad5a520255b04f7614ea
   }

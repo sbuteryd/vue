@@ -28,15 +28,24 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets" />
+>>>>>>> 6eb6b325842b24ebe29cad5a520255b04f7614ea
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/img" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+<<<<<<< HEAD
       <recent name="$PROJECT_DIR$" />
+=======
+      <recent name="$PROJECT_DIR$/assets" />
+      <recent name="$PROJECT_DIR$/img" />
+>>>>>>> 6eb6b325842b24ebe29cad5a520255b04f7614ea
       <recent name="$PROJECT_DIR$/css" />
     </key>
   </component>
@@ -72,8 +81,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1570533981068</updated>
+<<<<<<< HEAD
       <workItem from="1570533982222" duration="929000" />
       <workItem from="1570796928744" duration="7506000" />
+=======
+      <workItem from="1570533982222" duration="4557000" />
+      <workItem from="1570571710093" duration="2201000" />
+>>>>>>> 6eb6b325842b24ebe29cad5a520255b04f7614ea
     </task>
     <servers />
   </component>

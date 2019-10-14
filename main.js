@@ -1,22 +1,25 @@
-//Add a button that removes the product from the cart array by emitting an event with the id of the product to be removed.
+//Add a question to the form: “Would you recommend this product”. Then take in that response from the user via radio buttons of “yes” or “no” and add it to the productReview object, with form validation.
 
 Vue.component('product', {
     props: {
         premium: {
             type: Boolean,
             required: true
-        },
+        }
     },
     template: `
      <div class="product">
+          
         <div class="product-image">
           <img :src="image" />
         </div>
+  
         <div class="product-info">
             <h1>{{ product }}</h1>
             <p v-if="inStock">In Stock</p>
             <p v-else>Out of Stock</p>
             <p>Shipping: {{ shipping }}</p>
+  
             <ul>
               <li v-for="detail in details">{{ detail }}</li>
             </ul>
@@ -29,26 +32,29 @@ Vue.component('product', {
                  >
             </div> 
   
-            <button
+            <button v-on:click="addToCart" 
               :disabled="!inStock"
               :class="{ disabledButton: !inStock }"
-              @click="updateCart"
               >
             Add to cart
             </button>
-         </div>  
-         <div>
-         <h2>Reviews</h2>
-         <p v-if="!reviews.length">There are no Reviews yet</p>
-         <ul v-else>
-            <li v-for="(review, index) in reviews" :key="index">
-                 <p>Name: {{review.name}}</p>
-                 <p>Review:{{review.review}}</p>
-                 <p>Rating {{review.rating}}</p>
-            </li>
-         </ul>
-         </div>
-      <product-review @review-submitted="addReview"></product-review>   
+  
+         </div> 
+
+
+          <div>
+              <p v-if="!reviews.length">There are no reviews yet.</p>
+              <ul v-else>
+                  <li v-for="(review, index) in reviews" :key="index">
+                    <p>{{ review.name }}</p>
+                    <p>Rating:{{ review.rating }}</p>
+                    <p>{{ review.review }}</p>
+                  </li>
+              </ul>
+          </div>
+         
+         <product-review @review-submitted="addReview"></product-review>
+      
       </div>
      `,
     data() {
@@ -61,29 +67,28 @@ Vue.component('product', {
                 {
                     variantId: 2234,
                     variantColor: 'green',
-                    variantImage: './img/vmSocks-green-onWhite.jpg',
+                    variantImage: 'https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg',
                     variantQuantity: 10
                 },
                 {
                     variantId: 2235,
                     variantColor: 'blue',
-                    variantImage: './img/vmSocks-blue-onWhite.jpg',
+                    variantImage: 'https://www.vuemastery.com/images/challenges/vmSocks-blue-onWhite.jpg',
                     variantQuantity: 0
                 }
             ],
-            reviews:[]
+            reviews: []
         }
     },
     methods: {
-        updateProduct: function (index) {
+        addToCart() {
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
+        },
+        updateProduct(index) {
             this.selectedVariant = index
         },
-        updateCart(){
-            console.log('++ update Cart')
-            this.$emit('update-cart')
-        },
-        addReview(productView){
-            this.reviews.push(productView)
+        addReview(productReview) {
+            this.reviews.push(productReview)
         }
     },
     computed: {
@@ -106,79 +111,69 @@ Vue.component('product', {
 })
 
 
-Vue.component('product-review',{
-    // value={this.state.review}
-    template: ` 
-<!--         event.preventDefault()-->
-        <form class="review-form" @submit.prevent="onSubmit">
-        <p v-if="errors.length">
-        <b>Please correct the following error(s)</b>
-        <ul v-for="error in errors">
-        <li>{{error}}</li>
-        </ul>
-       </p>
-            <label for="name">Name:</label>
-            <!--            value={this.state.name}-->
-            <input v-model="name">
+Vue.component('product-review', {
+    template: `
+      <form class="review-form" @submit.prevent="onSubmit">
+      
+        <p class="error" v-if="errors.length">
+          <b>Please correct the following error(s):</b>
+          <ul>
+            <li v-for="error in errors">{{ error }}</li>
+          </ul>
         </p>
+
         <p>
-            <label for="rating">Rating</label>
-            <!--       value ={this.state.review}}-->
-            <textarea id="review" v-model="review"></textarea>
+          <label for="name">Name:</label>
+          <input id="name" v-model="name">
         </p>
-        <p> 
-            <label for="rating">Rating:</label>
-            <select name="" id="rating" v-model.number="rating">
-                <option>5</option>
-                <option>4</option>
-                <option>3</option>
-                <option>2</option>
-                <option>1</option>
-            </select>
+        
+        <p>
+          <label for="review">Review:</label>      
+          <textarea id="review" v-model="review"></textarea>
         </p>
+        
+        <p>
+          <label for="rating">Rating:</label>
+          <select id="rating" v-model.number="rating">
+            <option>5</option>
+            <option>4</option>
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
+          </select>
+        </p>
+            
+        <p>
           <input type="submit" value="Submit">  
-    </form>  
-`,
-    data(){
-        // state = {
-        //     value: ' ',
-        //     name:'',
-        //     review:'',
-        //     listReview:[],
-        //     submitValue:false
-        // };
-        //都是直接调用一个函数，注意这里不是对象。
+        </p>    
+      
+    </form>
+    `,
+    data() {
         return {
-            name:null,
-            review:null,
-            rating:null,
-            errors:[]
+            name: null,
+            review: null,
+            rating: null,
+            errors: []
         }
     },
-    methods:{
-        // this.setState(({
-        //     value:'',
-        //     name:'',
-        //     review:'',
-        //     submitValue:false
-        // }))
-
-        onSubmit(){
-            this.errors=[]
-            if(this.name && this.review && this.rating){
+    methods: {
+        onSubmit() {
+            this.errors = []
+            if(this.name && this.review && this.rating) {
                 let productReview = {
-                    name:this.name,
-                    review:this.review,
-                    rating:this.rating
+                    name: this.name,
+                    review: this.review,
+                    rating: this.rating
                 }
-                this.$emit('review-submitted',productReview)
-                this.name=null
-                this.review=null
-                this.rating =null
-            }else {
-                if (!this.name) this.errors.push('Name Required')
-                if (!this.review) this.errors.push('Review Required')
-                if (!this.rating) this.errors.push('Rating Required')
+                this.$emit('review-submitted', productReview)
+                this.name = null
+                this.review = null
+                this.rating = null
+            } else {
+                if(!this.name) this.errors.push("Name required.")
+                if(!this.review) this.errors.push("Review required.")
+                if(!this.rating) this.errors.push("Rating required.")
             }
         }
     }
@@ -188,11 +183,11 @@ var app = new Vue({
     el: '#app',
     data: {
         premium: true,
-        cart: 0,
+        cart: []
     },
     methods: {
-        updateCart(){
-            this.cart +=1
+        updateCart(id) {
+            this.cart.push(id)
         }
     }
 })

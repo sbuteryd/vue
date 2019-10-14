@@ -1,4 +1,5 @@
 //Add a question to the form: “Would you recommend this product”. Then take in that response from the user via radio buttons of “yes” or “no” and add it to the productReview object, with form validation.
+// <product-review @review-submitted="addReview"></product-review>
 
 Vue.component('product', {
     props: {
@@ -38,23 +39,17 @@ Vue.component('product', {
               >
             Add to cart
             </button>
-  
          </div> 
+         <p v-if="!reviews.length">There no reviews</p>
+         <p v-else>
+                  <ul  v-for="review in reviews">
+                        <li>{{review.name}}</li>
+                        <li>{{review.comment}}</li>
+                        <li>{{review.rating}}</li>
 
-
-          <div>
-              <p v-if="!reviews.length">There are no reviews yet.</p>
-              <ul v-else>
-                  <li v-for="(review, index) in reviews" :key="index">
-                    <p>{{ review.name }}</p>
-                    <p>Rating:{{ review.rating }}</p>
-                    <p>{{ review.review }}</p>
-                  </li>
-              </ul>
-          </div>
-         
-         <product-review @review-submitted="addReview"></product-review>
-      
+                 </ul>
+         </p>
+          <second @toinformation="getInfor"></second>
       </div>
      `,
     data() {
@@ -87,8 +82,8 @@ Vue.component('product', {
         updateProduct(index) {
             this.selectedVariant = index
         },
-        addReview(productReview) {
-            this.reviews.push(productReview)
+        getInfor(infor){
+            this.reviews.push(infor)
         }
     },
     computed: {
@@ -114,6 +109,12 @@ Vue.component('product', {
 Vue.component('product-review', {
     template: `
       <form class="review-form" @submit.prevent="onSubmit">
+      
+      <p v-if="!errors.length">
+        <ul v-for="error in errors">
+        <li>{{error}}</li>
+</ul>
+      </p>
       
         <p class="error" v-if="errors.length">
           <b>Please correct the following error(s):</b>
@@ -178,6 +179,62 @@ Vue.component('product-review', {
         }
     }
 })
+
+
+Vue.component("second",{
+    template:
+        `<form class="review-form" @submit.prevent="onsubmit">
+            <p v-if="errors.length">
+                    <ul v-for="error in errors">
+                      <li>{{error}}</li>
+                    </ul>
+             </p>
+            <label for="name">Name</label>
+            <input type="text" id="name" v-model="name">
+            <label for="comment"></label>
+            <textarea id="comment" v-model="comment"></textarea>
+                <label for="rating">Select</label>
+        <select name="" id="rating" v-model.number="rating">
+            <option>5</option>
+            <option>4</option>
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
+        </select>
+                    <input type="submit">
+    </form> `,
+    data(){
+        return {
+            name:null,
+            comment:null,
+            rating:null,
+            errors: []
+
+        }
+    },
+    methods:{
+        onsubmit(){
+            console.log(this.errors)
+            this.errors=[]
+            if(this.name && this.comment&&this.rating){
+                let infomation={
+                    name:this.name,
+                    comment:this.comment,
+                    rating:this.rating
+                }
+                this.$emit('toinformation',infomation)
+                this.name=null
+                this.comment =null
+                this.rating = null
+            }else {
+                if(!this.name) this.errors.push('Name Request')
+                if(!this.comment) this.errors.push('Name comment')
+                if(!this.rating) this.errors.push('Name rating')
+            }
+        }
+    }
+})
+
 
 var app = new Vue({
     el: '#app',

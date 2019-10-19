@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
-import EventList from './views/EventList'
-import EventShow from './views/EventShow'
-import EventCreate from './views/EventCreate'
+import EventList from './view/EventList'
+import EventShow from './view/EventShow'
+import EventCreate from './view/EventCreate'
 
 Vue.use(Router);
 
@@ -12,6 +12,7 @@ export default new Router({
       path:'/',
       name:'event-list',
       component:EventList,
+      alias:'/about'
     },
     {
       path:'/event',

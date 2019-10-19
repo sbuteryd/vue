@@ -1,29 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="45f58183-9303-42c7-a002-5ae61b19f722" name="Default Changelist" comment="" />
+    <list default="true" id="45f58183-9303-42c7-a002-5ae61b19f722" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/real-world-vue/src/view/EventCreate.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/real-world-vue/src/view/EventShow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/real-world-vue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/real-world-vue/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/real-world-vue/src/components/EventCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/real-world-vue/src/components/EventCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/real-world-vue/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/real-world-vue/src/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/real-world-vue/src/views/About.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/real-world-vue/src/views/EventCreate.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/real-world-vue/src/views/EventList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/real-world-vue/src/view/EventList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/real-world-vue/src/views/EventShow.vue" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="vue" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1Rv3wYM0bAhIh5wT7PccRgMPjEq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.startup.tasks" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/real-world-vue/src/views" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/css" />
     </key>
@@ -55,16 +78,42 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="964c3839-2615-41c3-8dd7-211f9b437d39" name="Default Changelist" comment="" />
+      <changelist id="45f58183-9303-42c7-a002-5ae61b19f722" name="Default Changelist" comment="" />
       <created>1570533981068</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1570533981068</updated>
       <workItem from="1570533982222" duration="929000" />
+      <workItem from="1571180536494" duration="7321000" />
+      <workItem from="1571314339428" duration="4131000" />
+      <workItem from="1571321576977" duration="4357000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/real-world-vue/src/view/About.vue</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
